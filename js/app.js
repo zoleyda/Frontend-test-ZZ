@@ -1,18 +1,6 @@
 /*Variable aplicación*/
 var App = {};
 
-/*Metodo para renderizar un acción*/
-App.render   = function(id, data){
-    var rendered = Handlebars.compile($(id).html()), 
-        anima = ['bounceInLeft', 'fadeInDownBig', 'slideInDown',
-            'lightSpeedIn', 'slideInUp'],
-        item = anima[Math.floor(Math.random()*anima.length)];;   
-    $('#output').html(rendered(data));
-    $('#output').addClass('animated '+item)
-    .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-      $(this).removeClass();
-    });
-}
 /*Busca en la lista por id*/
 App.getById = function(id){
    return _.findWhere(App.data, {id: parseInt(id)});
