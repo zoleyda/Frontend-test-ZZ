@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--/.Frontend Test para SocialH4ck por Zoleyda Zambrano -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Frontend-test-ZZ</title>
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <meta charset='utf-8'> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="icon-bar">Inicio</span>
+            <span class="sr-only">Listado de Clientes</span>
+            <span class="icon-bar">Contáctanos</span>
+          </button>
+          <a class="navbar-brand" href="#">App-Clientes</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="inactive"><a href="#">Inicio</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Listado de Clientes <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li {{#if act}}class="active"{{/if}}><a href="#activos">Activos</a></li>
+                <li {{#if ina}}class="active"{{/if}}><a href="#inactivos">Inactivos</a></li>
+                <li {{#if todos}}class="active"{{/if}}><a href="#todos">Todos</a></li>
+              </ul>
+            </li>
+            <li class="inactive"><a href="#">Contáctanos</a></li>
+           </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+        <div class="container">
+            <div id="output"></div>
+        </div>
+
+        <script type="text/tpl" id="default">
+        <div class="row">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+           <div class="row">
+            {{#each user}}
+                <div class="col-sm-6 col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{name}}</h3>
+                        </div>
+                        <div class="panel-body"><img src="{{picture}}" alt="avatar" class="img-thumbnail center-block"/>
+                            <div class="btn-group btn-group-justified ">
+                            <a href="#mapa/{{id}}" class="btn btn-warning" title="Ubicación"> <i class="glyphicon glyphicon-map-marker"></i></a>
+                            <a href="#info/{{id}}" class="btn btn-primary" title="Datos personales"> <i class="glyphicon glyphicon-user"></i></a>
+                            <a href="#amigos/{{id}}" class="btn btn-info" title="Amigos"> <i class="glyphicon glyphicon-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+        </script>
+<!--/.tarea mostrar mapa -->
+        <script type="text/tpl" id="location">
+        <br />
+        <br />
+<nav>
+  <ul class="pager">
+    <li><a href="#" class="pager back"><i class="glyphicon glyphicon-chevron-left"></i>  Regresar</a></li>
+    <li><a href="#info/{{id}}" class="pager Next">Ver datos personales  <i class="glyphicon glyphicon-chevron-right"></i></a></li>
+  </ul>
+</nav>   
+            <h2>{{name}} | <small>Ubicación</small></h2>
+            <i class="glyphicon glyphicon-map-marker"></i> @{{latitude}},{{longitude}}
+            <div id="maps"></div>
+            <br />
+            <a href="#" class="pager up"><i class="glyphicon glyphicon-chevron-up"></i>ir arriba</a>
+            
+        </script>
+<!--/.tarea mostrar datos personales -->
+        <script type="text/tpl" id="info">
+        <br />
+        <br />
+<nav>
+  <ul class="pager">
+    <li><a href="#" class="pager back"><i class="glyphicon glyphicon-chevron-left"></i>  Regresar</a></li>
+    <li><a href="#amigos/{{id}}" class="pager Next">Lista de amigos  <i class="glyphicon glyphicon-chevron-right"></i></a></li>
+  </ul>
+</nav>  
+
+<div class="jumbotron">
+<div class="container">
+            <h2>{{name}} | <small>Datos personales</small></h2>
+            <br />
+<div class="col-sx-9 col-md-9">
+<div class="panel panel-default">
+    <div class="panel-heading">
+    <h3 class="panel-title">Información General</h3>
+    </div>
+  <div class="panel-body">
+    <img src="{{picture}}" alt="avatar" class="img-thumbnail media-left"/>
+            <dl>
+               <dt>Registrado desde</dt> <dd>{{registered}}</dd>
+               <dt>Trabaja en</dt> <dd>{{company}}</dd>
+               <dt>Balance</dt> <dd>{{balance}} <i class="glyphicon glyphicon-usd"></i></dd>
+            </dl>
+  </div>
+  <div class="panel-heading">
+    <h3 class="panel-title">Información de Contácto</h3>
+  </div>
+  <div class="panel-body">
+            <dl>
+           <dt>Teléfono</dt> <dd>{{phone}}</dd>
+           <dt>Email</dt> <dd>{{email}}</dd>
+           <dt>Dirección</dt> <dd>{{address}}</dd>
+            </dl>           
+  </div>
+  <div class="panel-heading">
+    <h3 class="panel-title">Información Básica</h3>
+  </div>
+  <div class="panel-body">
+            <dl>
+               <dt>Edad</dt> <dd>{{age}}</dd>
+               <dt>Sexo</dt> <dd>{{gender}}</dd>
+               <dt>Color de ojos</dt> <dd>{{eyeColor}}</dd>
+               <dt>Descripción</dt> <dd>{{about}}</dd>
+            </dl>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a href="#" class="pager up"><i class="glyphicon glyphicon-chevron-up"></i>ir arriba</a>            
+        </script>
+<!--/.tarea mostrar dlistado de amigos -->
+        <script type="text/tpl" id="friend">
+        <br />
+        <br />
+<nav>
+  <ul class="pager">
+    <li><a href="#" class="pager back"><i class="glyphicon glyphicon-chevron-left"></i>  Regresar</a></li>
+    <li><a href="#mapa/{{id}}" class="pager Next">Ver ubicación  <i class="glyphicon glyphicon-chevron-right"></i></a></li>
+  </ul>
+</nav>  
+            <h2>{{name}} | <small>Listado de amigos</small></h2>
+            <ul class="list-group">
+                {{#each friends}}
+                    <li class="list-group-item">{{name}}</li>
+                {{/each}}
+            </ul>
+        </script>
+
+        <script src="js/jquery1.min.js"></script>
+        <script src="js/router.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/handlebars.js"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script src="js/gmaps.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/app.js"></script>
+	</body>
+</html>
